@@ -19,7 +19,18 @@ public class Tetrad
 	// Constructs a Tetrad.
 	public Tetrad(BoundedGrid<Block> grid)
 	{
-		throw new RuntimeException("INSERT MISSING CODE HERE");
+		//throw new RuntimeException("INSERT MISSING CODE HERE");
+		Color tetradColor = Color.RED;
+		Location[] blockLocations = {new Location(0, 3), new Location(0, 4), new Location(0, 5), new Location(0, 6)};
+		
+		blocks = new Block[4];
+		for (int i = 0; i < blocks.length; i++) {
+			Block currentBlock = new Block();
+			currentBlock.setColor(tetradColor);
+			blocks[i] = currentBlock;
+		}
+		
+		addToLocations(grid, blockLocations);
 	}
 
 
@@ -47,7 +58,10 @@ public class Tetrad
 	//                and their locations match the elements of locs.
 	private void addToLocations(BoundedGrid<Block> grid, Location[] locs)
 	{
-		throw new RuntimeException("INSERT MISSING CODE HERE");
+		//throw new RuntimeException("INSERT MISSING CODE HERE");
+		for (int i = 0; i < locs.length; i++) {
+			blocks[i].putSelfInGrid(grid, locs[i]);
+		}
 	}
 
 	// Precondition:  The elements of blocks are in the grid.
