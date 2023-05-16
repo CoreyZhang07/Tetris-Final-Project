@@ -81,6 +81,9 @@ public class Tetris
 	{
 		//throw new RuntimeException("INSERT MISSING CODE HERE");
 		// Testing code here
-		Tetris newGame = new Tetris();
+		int testsToRun = 1;
+		for (int tests = 1; tests <= testsToRun; tests++) {
+			Tetris newGame = new Tetris();
+		}
 	}
 }
