@@ -151,7 +151,6 @@ public class Tetrad
 	{
 		//throw new RuntimeException("INSERT MISSING CODE HERE");
 		Location[] oldLocations = new Location[blocks.length];
-		BoundedGrid<Block> grid = blocks[0].getGrid();
 		for (int i = 0; i < blocks.length; i++) {
 			oldLocations[i] = blocks[i].getLocation();
 			blocks[i].removeSelfFromGrid(); // Sets the grid and location of the block to null

@@ -39,6 +39,7 @@ public class Tetris implements ArrowListener
 			if (successfullyDropped == true) {
 				display.showBlocks();
 			} else {
+				clearCompletedRows();
 				activeTetrad = new Tetrad(grid);
 			}
 		}
@@ -90,12 +91,42 @@ public class Tetris implements ArrowListener
 		for (int removingCol = 0; removingCol < cols; removingCol++) {
 			grid.get(new Location(row, removingCol)).removeSelfFromGrid();
 		}
+		
+		for (int currRow = row - 1; currRow >= 0; currRow--) {
+			boolean currRowIsEmpty = true;
+			for (int movingCol = 0; movingCol < cols; movingCol++) {
+				Block blockAtLocation = grid.get(new Location(currRow, movingCol));
+				if (blockAtLocation != null) {
+					blockAtLocation.removeSelfFromGrid();
+					blockAtLocation.putSelfInGrid(grid, new Location(currRow + 1, movingCol));
+					
+					currRowIsEmpty = false;
+				}
+			}
+			
+			if (currRowIsEmpty) {
+				break;
+			}
+		}
 	}
 
 	// Postcondition: All completed rows have been cleared.
 	private void clearCompletedRows()
 	{
-		throw new RuntimeException("INSERT MISSING CODE HERE");
+		//throw new RuntimeException("INSERT MISSING CODE HERE");
+		int rowsCleared = 0;
+		
+		int rows = grid.getNumRows();
+		for (int check = 0; check < rows; check++) {
+			if (isCompletedRow(check) == true) {
+				clearRow(check);
+				rowsCleared++;
+			}
+		}
+		
+		if (rowsCleared > 0) {
+			display.showBlocks();
+		}
 	}
 
 	// Sleeps (suspends the active thread) for duration seconds.
