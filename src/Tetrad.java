@@ -66,6 +66,32 @@ public class Tetrad
 		}
 		
 		addToLocations(grid, blockLocations);
+		
+			for (int i = 0; i < blocks.length; i++) {
+			Block currentBlock = new Block();
+			currentBlock.setColor(tetradColor);
+			blocks[i] = currentBlock;
+			if (j != i) {
+                    		int dx = blockLocations[j].row - blockLocations[i].row;
+                    		int dy = blockLocations[j].col - blockLocations[i].col;
+                    		sumOfDistances += Math.abs(dx) + Math.abs(dy);
+                	}
+		}
+		
+		
+        	int sumOfDistances = 0;
+        	int minSumOfDistances = Integer.MAX_VALUE;
+        	int centerIndex = 0;
+
+            	if (sumOfDistances < minSumOfDistances) {
+                	minSumOfDistances = sumOfDistances;
+                	centerIndex = i;
+        	}
+        
+       
+       	 	Location temp = blockLocations[0];
+       		blockLocations[0] = locations[centerIndex];
+        	blockLocations[centerIndex] = temp;
 	}
 
 
